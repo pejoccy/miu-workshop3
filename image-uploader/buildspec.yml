@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - cd image-uploader
+      - npm install
+  build:
+    commands:
+      - cd image-uploader
+      - npm run build  # Builds the project
+artifacts:
+  files:
+    - '**/*'
+  base-directory: image-upploader/build  # Directory with output files (e.g., React app)
