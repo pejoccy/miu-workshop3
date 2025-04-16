@@ -15,11 +15,12 @@ const BUCKET_PREFIX = process.env.AWS_BUCKET_PREFIX;
 export const handler = async (event) => {
   try {
     const { filename, contentType, email } = JSON.parse(event.body);
+    const fileKey = `${BUCKET_PREFIX}/${filename}`;
 
     // Generate pre-signed URL
     const uploadParams = {
       Bucket: BUCKET_NAME,
-      Key: filename,
+      Key: fileKey,
       ContentType: contentType,
     };
     const command = new PutObjectCommand(uploadParams);
@@ -30,7 +31,7 @@ export const handler = async (event) => {
     const timestamp = new Date().toISOString();
     const item = {
       email: { S: email },
-      url: { S: `https://${BUCKET_NAME}.s3.amazonaws.com/${BUCKET_PREFIX}/${filename}` },
+      url: { S: `https://${BUCKET_NAME}.s3.amazonaws.com/${fileKey}` },
       datetime: { S: timestamp },
     };
 
