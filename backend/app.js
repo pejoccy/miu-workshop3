@@ -12,6 +12,7 @@ const SNS_TOPIC_ARN = process.env.AWS_SNS_TOPIC_ARN;
 const DYNAMODB_TABLE_NAME = process.env.AWS_DYNAMODB_TABLE_NAME;
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 const BUCKET_PREFIX = process.env.AWS_BUCKET_PREFIX;
+
 export const handler = async (event) => {
   try {
     const { filename, contentType, email } = JSON.parse(event.body);

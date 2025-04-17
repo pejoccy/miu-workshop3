@@ -37,7 +37,7 @@ const ImageUploader = () => {
 
 
     } catch (error) {
-      console.error('Error uploading file:', error);
+      console.error('Error uploading file:', JSON.stringify(error, null, 2));
       setMessage('Upload failed. Please try again.');
     }
   };
